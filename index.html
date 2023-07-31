@@ -1,0 +1,900 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="icon" href="https://drive.google.com/uc?export=download&id=1OdtSdF1ejXSJlLr4lPTX3Ce2uAPfQfDe" type="image/gif" sizes="16x16">
+    <meta charset="UTF-8">
+    <title>DORAEMON ZONE</title>
+    <meta content="width=device-width,user-scalable=no,initial-scale=1,maximum-scale=1,minimum-scale=1" name="viewport">
+    <meta content="IE=edge" http-equiv="X-UA-Compatible">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lobster">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <style>
+       .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+        }
+
+        /* Style for the popup container */
+        .popup-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        /* Style for the close button */
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }     .loading {
+            margin-top: 0;
+            font-weight: 700;
+            vertical-align: middle;
+            line-height: 150px;
+            font-size: 25px;
+            text-transform: uppercase;
+            background: linear-gradient(to right, red 30%, rgb(10, 60, 215) 75%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        #mpdvidply {
+          border-color: #eb4132;
+          border-radius: 6px;
+        }
+        h1 {
+            background-color: #000;
+            margin: 0;
+            text-align: center;
+            padding: 5px
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none
+        }
+
+        tr th {
+            font-tvv-name: bold;
+            background-color: green;
+            padding: 1px
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        @keyframes fadein {
+            0% {
+                opacity: 0
+            }
+            66% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+
+        @-webkit-keyframes fadein {
+            0% {
+                opacity: 0
+            }
+            66% {
+                opacity: 0
+            }
+            100% {
+                opacity: 1
+            }
+        }
+
+        .tvv-item {
+            position: relative;
+            display: inline-block;
+            width: 120px;
+            height: 150px;
+            margin: 3px;
+            padding: 10px;
+            border: 1px solid green z-index: 1;
+            background: White;
+            box-shadow: 1px 2px 2px red;
+            overflow: hidden;
+            border-radius: 4px;
+            filter: contrast(100%)
+        }
+
+        .tvv-item>* {
+            margin: 0;
+            padding: 0
+        }
+
+        .tvv-item .tvv-thumb {
+            width: 100%;
+            bottom: 10px;
+            top: 0px;
+            position: absolute;
+            right: 0;
+            float: center;
+        }
+
+        .tvv-item .tvv-thumb img {
+            width: 100%;
+            pointer-events: none
+        }
+
+        .tvv-item .tvv-name {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 12px;
+            display: block;
+            text-align: center;
+            width: 100%;
+            color: black;
+            padding: 5px;
+            font-weight: 800;
+            text-overflow: ellipsis;
+            black-space: nowrap;
+            overflow: hidden;
+            background: linear-gradient(to bottom left, #ccffff 7%, #ffffff 100%);
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5);
+            7px 7px 20px 0px rgba(0, 0, 0, .1),
+            4px 4px 5px 0px rgba(0, 0, 0, .1);
+            transition: all 0.3s ease;
+        }
+
+        .tvv-item img {
+            width: 100%;
+            pointer-events: none
+        }
+
+        .tvv-item:after {
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 0;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            border-radius: 5px;
+            border: 0px solid green;
+            background-color: black;
+            background-image: linear-gradient(to bottom left, #ccffff 7%, #ffffcc 100%);
+            box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5);
+            7px 7px 20px 0px rgba(0, 0, 0, .1),
+            4px 4px 5px 0px rgba(0, 0, 0, .1);
+            transition: all 0.3s ease;
+        }
+
+        .tvv-item:hover {
+            color: #000;
+        }
+
+        .tvv-item:hover:after {
+            top: auto;
+            bottom: 0;
+            height: 100%;
+        }
+
+        .tvv-item:active {
+            top: 5px;
+        }
+
+        .tvv-name:hover {}
+
+        .fin {
+            width: 100%;
+            margin-top: 1px;
+            margin-bottom: 2px;
+            float: center;
+            height: 30px;
+            font-size: small;
+            background-color: rgb(40, 40, 40);
+            color: black;
+            border-radius: 10px;
+            border: 3px solid greenoutline: none;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .fin,
+        .dftr {
+            width: 100%;
+            margin-top: 1px;
+            margin-bottom: 2px;
+            float: center;
+            height: 30px;
+            font-style: bold;
+            background-color: rgb(40, 40, 40);
+            color: purple;
+            background: linear-gradient(135deg, snow 0%, seashell 64%);
+            border-radius: 0px;
+            border: 2px solid red;
+            outline: none;
+            text-align: center;
+            font-family: "Poppins", sans-serif;
+        }
+
+        .fin:hover,
+        .dftr:hover {
+            border: 3px solid rgb(255, 60, 140);
+            color: red;
+            background: linear-gradient(135deg, azure 0%, floralwhite 64%);
+        }
+
+        .tvv-item {
+            width: calc(100%/20 - 10px)
+        }
+
+        }
+
+        @media only screen and (max-width:2600px) {
+            .tvv-item {
+                width: calc(100%/19 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:2470px) {
+            .tvv-item {
+                width: calc(100%/18 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:2340px) {
+            .tvv-item {
+                width: calc(100%/17 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:2210px) {
+            .tvv-item {
+                width: calc(100%/16 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:2080px) {
+            .tvv-item {
+                width: calc(100%/15 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1950px) {
+            .tvv-item {
+                width: calc(100%/14 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1820px) {
+            .tvv-item {
+                width: calc(100%/13 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1690px) {
+            .tvv-item {
+                width: calc(100%/12 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1560px) {
+            .tvv-item {
+                width: calc(100%/11 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1430px) {
+            .tvv-item {
+                width: calc(100%/10 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1300px) {
+            .tvv-item {
+                width: calc(100%/9 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1170px) {
+            .tvv-item {
+                width: calc(100%/8 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:1040px) {
+            .tvv-item {
+                width: calc(100%/7 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:910px) {
+            .tvv-item {
+                width: calc(100%/6 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:780px) {
+            .tvv-item {
+                width: calc(100%/5 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:650px) {
+            .tvv-item {
+                width: calc(100%/4 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:520px) {
+            .tvv-item {
+                width: calc(100%/3 - 10px)
+            }
+        }
+
+        @media only screen and (max-width:390px) {
+            .tvv-item {
+                width: calc(100%/2 - 10px)
+            }
+        }
+
+        .custom-btn {
+            width: 130px;
+            height: 40px;
+            color: #fff;
+            border-radius: 5px;
+            padding: 10px 25px;
+            font-family: 'Lato', sans-serif;
+            font-weight: 500;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            display: inline-block;
+            box-shadow: inset 2px 2px 2px 0px rgba(190, 5, 5, 0.5), 7px 7px 20px 0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+            outline: none;
+        }
+
+        .btn-11 {
+            border: white;
+            background: green;
+            background: linear-gradient(80deg, rgb(201, 0, 0) 0%, rgb(0, 12, 187) 100%);
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .btn-11:hover {
+            text-decoration: none;
+            color: #fff;
+            background-image: linear-gradient(135deg, red 0%, purple 114%);
+        }
+
+        .btn-11:before {
+            position: absolute;
+            content: '';
+            display: inline-block;
+            top: -180px;
+            left: 0;
+            width: 30px;
+            height: 100%;
+            background-color: #fff;
+            animation: shiny-btn1 3s ease-in-out infinite;
+        }
+
+        .btn-11:hover {
+            opacity: .7;
+            color: white;
+        }
+
+        .btn-11:active {
+            box-shadow: 4px 4px 6px 0 rgba(230, 3, 3, 0.589), -4px -4px 6px 0 rgba(116, 125, 136, .2), inset -4px -4px 6px 0 rgba(255, 255, 255, .2), inset 4px 4px 6px 0 rgba(0, 0, 0, .2);
+        }
+
+        @-webkit-keyframes shiny-btn1 {
+            0% {
+                -webkit-transform: scale(0) rotate(45deg);
+                opacity: 0;
+            }
+            80% {
+                -webkit-transform: scale(0) rotate(45deg);
+                opacity: 0.5;
+            }
+            81% {
+                -webkit-transform: scale(4) rotate(45deg);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: scale(50) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        @import url("https://fonts.googleapis.com/css?family=Roboto");
+        @-webkit-keyframes come-in {
+            0% {
+                -webkit-transform: translatey(100px);
+                transform: translatey(100px);
+                opacity: 0;
+            }
+            30% {
+                -webkit-transform: translateX(-50px) scale(0.4);
+                transform: translateX(-50px) scale(0.4);
+            }
+            70% {
+                -webkit-transform: translateX(0px) scale(1.2);
+                transform: translateX(0px) scale(1.2);
+            }
+            100% {
+                -webkit-transform: translatey(0px) scale(1);
+                transform: translatey(0px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes come-in {
+            0% {
+                -webkit-transform: translatey(100px);
+                transform: translatey(100px);
+                opacity: 0;
+            }
+            30% {
+                -webkit-transform: translateX(-50px) scale(0.4);
+                transform: translateX(-50px) scale(0.4);
+            }
+            70% {
+                -webkit-transform: translateX(0px) scale(1.2);
+                transform: translateX(0px) scale(1.2);
+            }
+            100% {
+                -webkit-transform: translatey(0px) scale(1);
+                transform: translatey(0px) scale(1);
+                opacity: 1;
+            }
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            background: #eaedf2;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .stwBlurRainbow,
+        .stwRainbow {
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            z-index: 23;
+            background: linear-gradient(-45deg, #4086f4, #31a952, #fbbe01, #eb4132, #4086f4, #31a952, #fbbe01, #eb4132);
+            background-size: 200%;
+            -webkit-animation: animeBar 5s linear infinite;
+            animation: animeBar 5s linear infinite
+        }
+
+        .stwBlurRainbow {
+            height: 10px;
+            z-index: 22;
+            filter: blur(10px);
+            opacity: .7
+        }
+
+        @-webkit-keyframes animeBar {
+            0% {
+                background-position: 0 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0 50%
+            }
+        }
+
+        @keyframes animeBar {
+            0% {
+                background-position: 0 50%
+            }
+            50% {
+                background-position: 100% 50%
+            }
+            100% {
+                background-position: 0 50%
+            }
+        }
+
+        .uc {
+            pointer-events: none;
+        }
+
+        .vb {
+            text-align: center;
+            color: #000;
+            background-color: #ccffff;
+        }
+    </style>
+    <center>
+        <button class="btn-11 custom-btn" style="width:100%;font-weight:1000;font-size:25px;position:sticky;top:0px;z-index:3">Mark Toon</button>
+        <div class="no-items section" id="search_top" name="Search (Top)" style="z-index:3;position:sticky;top:44px"></div>
+        <input class="fin" placeholder="Load All Channels then Search here.." style="z-index:3;position:sticky;top:44px">
+        <div class="main" id="ch_list"></div>
+
+    <h1 class="vb">LIVE TV CHANNEL</h1>
+
+         <a href="m/d1 copy 10.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://yt3.googleusercontent.com/UcTclRY5rATb4jiyXMLfwVsTDCLSgdETDM6Ebgsj3NKULRMlntJ7mnX43f8HixdSJhmqHSRHfg=s900-c-k-c0x00ffffff-no-rj">
+                <div class="tvv-name">Disney Channel
+                </div>
+            </div>
+        </a>
+
+<br>
+<h1 class="vb">MOVIES <br><h2> ⚠️ !! NOTICE !! ⚠️</h2> <br><h3>SOME MOVIES WORK IN LANDSCAPE MODE</h3></h1>
+        <a href="m/d1.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://raretoonsindia.tv/wp-content/uploads/2021/11/New-Doraemon-All-Episodes-in-Hindi-211x300.jpg">
+                <div class="tvv-name">Doraemon Nobita Little Space War
+                </div>
+            </div>
+        </a>
+        <a href="m/d1 copy.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://raretoonsindia.tv/wp-content/uploads/2021/11/New-Doraemon-All-Episodes-in-Hindi-211x300.jpg">
+                <div class="tvv-name">Doraemon Nobita's Dinosaur</div>
+            </div>
+        </a>
+        <a href="m/d1 copy 2.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://raretoonsindia.tv/wp-content/uploads/2021/11/New-Doraemon-All-Episodes-in-Hindi-211x300.jpg">
+                <div class="tvv-name"> </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 3.html">
+            <div class="tvv-item">
+                <img class="loading" src=" https://raretoonsindia.tv/wp-content/uploads/2021/11/New-Doraemon-All-Episodes-in-Hindi-211x300.jpg">
+                <div class="tvv-name"> </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 4.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://images.moviesanywhere.com/143cdb987186a1c8f94d4f18de211216/fdea56fa-2703-47c1-8da8-70fc5382e1ea.jpg">
+                <div class="tvv-name"> Harry Potter and the Sorcerer's Stone </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 5.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://images.moviesanywhere.com/51d05e3bd56acb23ba41a4db49633d98/743b4280-5ea4-4468-8d63-d565d480bee2.jpg">
+                <div class="tvv-name">Harry Potter and the Chamber of Secrets</div>
+            </div>
+        </a>
+        <a href="m/d1 copy 6.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://m.media-amazon.com/images/I/811tHWkRsdL._RI_.jpg">
+                <div class="tvv-name"> Harry Potter and the Prisoner of Azkaban </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 7.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://m.media-amazon.com/images/I/91OlfLbn43L._RI_.jpg">
+                <div class="tvv-name">Harry Potter and the Goblet of Fire </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 8.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://images.moviesanywhere.com/e1752b37b6a6277dc16ed75b55b4883f/688a801d-4a1b-424e-b949-80253e07d0e2.jpg?h=375&resize=fit&w=250">
+                <div class="tvv-name"> Harry Potter and the Order of the Phoenix</div>
+            </div>
+        </a>
+        <a href="m/d1 copy 9.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://m.media-amazon.com/images/I/91J3qHqSKjL._RI_.jpg">
+                <div class="tvv-name"> Harry Potter And The Half-Blood Prince </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 11.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://images.moviesanywhere.com/de6092b467fc299fdf79a51dfa7f9710/12b877a3-28de-46ff-820f-dd8bf07e8edb.jpg">
+                <div class="tvv-name">Harry Potter and the Deathly Hallows - Part 1 </div>
+            </div>
+        </a>
+        <a href="m/d1 copy 12.html">
+            <div class="tvv-item">
+                <img class="loading" src="https://m.media-amazon.com/images/I/71Uqy34noML._AC_UF894,1000_QL80_.jpg ">
+                <div class="tvv-name">Harry Potter and the Deathly Hallows - Part 2</div>
+            </div>
+        </a>
+
+
+
+
+
+
+
+
+
+        <center></center>
+        <div style=" display:inline-block">
+            <b>
+            <a href="https://instagram.com/_danishansari_">
+              <button class="btn-11 custom-btn" style="width:40vw;height:40px;margin-top:10px;font-size:10px">
+                <b>Made By Danish ❤️</b>
+            </button>
+            </a>
+            <b></b>
+            </b>
+        </div>
+        <b>
+          <b></b>
+        </b>
+        <b>
+          <b>
+            <div class="stwRainbow"></div>
+            <div class="stwBlurRainbow"></div>
+            <script></script>
+          </b>
+        </b>
+        <script>
+            $(document).ready(function() {
+                var dftr = $('select.dftr'),
+                    headerCount = $('#headerCount');
+                headerCount.html('select a filter or use search');
+                dftr.on('change', function() {
+                    dftr.attr('disabled', 'disabled');
+                    var records = $('#tvvTable').find('.tvv-item');
+                    records.hide();
+                    var critriaAttributes = [];
+                    dftr.each(function() {
+                        var $this = $(this),
+                            $selectedLength = $this.find(':selected').length,
+                            $critriaAttribute = '';
+                        if ($selectedLength > 0 && $this.val() != '0') {
+                            if ($selectedLength == 1) {
+                                $critriaAttribute += '[data-' + $this.data('attribute') + '*="' + $this.val() + '"]';
+                            } else {
+                                var $startDataAttribute = '[data-' + $this.data('attribute') + '*="',
+                                    $endDataAttribute = '"]',
+                                    $selectedValues = $this.val().toString();
+                                $critriaAttribute += $startDataAttribute + $selectedValues.replaceAll(',', ($endDataAttribute + ',' + $startDataAttribute)) + $endDataAttribute;
+                            }
+                            critriaAttributes.push($critriaAttribute);
+                        }
+                    });
+                    if (critriaAttributes.length > 0) {
+                        $.each(critriaAttributes, function(i, filterValue) {
+                            $showRecords = $showRecords.filter(filterValue);
+                        });
+                    }
+                    $showRecords.show();
+                    headerCount.html($showRecords.length + ' channels filtered');
+                    dftr.removeAttr('disabled');
+                    $(".fin").val('');
+                });
+                $(".fin").keyup(function() {
+                    var filter = $(this).val(),
+                        count = 0;
+                    $('select.dftr').prop('selectedIndex', 0);
+                    $(".tvv-item").each(function() {
+                        if ($(this).text().search(new RegExp(filter, "i")) < 0) {
+                            $(this).fadeOut();
+                        } else {
+                            $(this).show();
+                            count++;
+                        }
+                    });
+                });
+            });
+        </script>
+        <center></center>
+    </center>
+    </body><br>
+    <center class="uc">
+        <script type="text/javascript" src="//widget.supercounters.com/ssl/online_i.js"></script>
+        <script type="text/javascript">
+            sc_online_i(1668243, "ffffff", "e61c1c");
+        </script><br><noscript>
+</center>
+
+
+<script>
+ document.addEventListener('keydown', function() {
+  if (event.keyCode == 123) {
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  } else if (event.ctrlKey && event.shiftKey && event.keyCode == 73) {
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  } else if (event.ctrlKey && event.keyCode == 85) {
+    alert("This function has been disabled to prevent you from stealing my code!");
+    return false;
+  }
+}, false);
+
+if (document.addEventListener) {
+  document.addEventListener('contextmenu', function(e) {
+    alert("This function has been disabled to prevent you from stealing my code!");
+    e.preventDefault();
+  }, false);
+} else {
+  document.attachEvent('oncontextmenu', function() {
+    alert("This function has been disabled to prevent you from stealing my code!");
+    window.event.returnValue = false;
+  });
+}
+
+
+function blockOne() { 
+  if (document.all) {				
+          return false;
+      }
+      }
+function blockTwo(e) {
+  if (document.layers||(document.getElementById&&!document.all)) 
+  {
+  if (e.which==2||e.which==3) {			
+      return false;
+  }
+  }
+  }
+if (document.layers){
+  document.captureEvents(Event.mousedown);
+  document.onmousedown=blockTwo;
+}
+else {
+  document.onmouseup=blockTwo;
+  document.oncontextmenu=blockOne;
+}
+  document.oncontextmenu=new Function("return false");
+
+     </script>
+    
+
+
+
+
+       <!-- Compiled and minified JavaScript -->
+       <script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+       <script>
+         //========================================================//
+
+         //Main JS Code
+
+
+         $(document).ready(function () {
+           $("#menuimg").click(function () {
+             $("#drop").slideToggle("fast");
+           });
+         });
+       </script>
+       </b></b>
+
+       <style media="screen">
+         .popup {
+           z-index: 9999999;
+           background-color: #fff;
+           width: 80%;
+           padding: 10px 20px;
+           position: absolute;
+           transform: translate(-50%, -50%);
+           left: 50%;
+           box-shadow: 5px 5px 5px #252525, -5px -5px 5px #252525;
+
+           top: 50%;
+           border-radius: 40px;
+           font-family: "Poppins", sans-serif;
+           display: none;
+           text-align: center;
+           border: 5px solid greenyellow;
+         }
+
+         .popup button {
+           display: block;
+           margin: 0 0 20px auto;
+           background-color: transparent;
+           font-size: 30px;
+           color: #fff;
+           background: #03549a;
+           border-radius: 100%;
+           width: 40px;
+           height: 40px;
+           border: none;
+           outline: none;
+           cursor: pointer;
+         }
+
+         .popup h2 {
+           margin-top: -20px;
+           color: blue;
+           font-weight: 800;
+
+         }
+
+         .popup p {
+           font-size: 14px;
+           font-weight: 800;
+
+           text-align: justify;
+           margin: 20px 0;
+           /* margin-left: 135px; */
+           line-height: 25px;
+           color: red;
+         }
+
+         .ak {
+           display: block;
+           width: 150px;
+           position: relative;
+           font-weight: 800;
+
+           margin: 10px auto;
+           text-align: center;
+           background-color: #0f72e5;
+           border-radius: 20px;
+           color: #ffffff;
+           text-decoration: none;
+           padding: 8px 0;
+         }
+         .uc{
+
+            pointer-events: none;
+         }
+       </style>
+
+       <body>
+         <div class="popup">
+           <button id="close">&times;</button>
+           <b>
+             <h2> ⚠️ !! NOTICE !! ⚠️ </h2>
+           </b>
+           <p>
+             This Website May Be Taken Down Soon Due To Copyright Please Join Our Telegram Channel - @Live_Era For New
+             Links 
+             💕Some Channels May not be Working Try them In different sections💕
+           </p>
+           <a rel="nofollow" class="ak" href="https://telegram.me/Live_Era">
+             <font color="white"> Join Now </font>
+           </a>
+         </div>
+         <script type="text/javascript">
+           window.addEventListener("load", function () {
+             setTimeout(
+               function open(event) {
+                 document.querySelector(".popup").style.display = "block";
+               },
+               1000
+             )
+           });
+
+
+           document.querySelector("#close").addEventListener("click", function () {
+             document.querySelector(".popup").style.display = "none";
+           });
+         </script>
+         <script type="text/javascript">
+           //<![CDATA[
+           !function (e, t, a) { function n() { c(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), o(), r() } function r() { for (var e = 0; e < d.length; e++)d[e].alpha <= 0 ? (t.body.removeChild(d[e].el), d.splice(e, 1)) : (d[e].y--, d[e].scale += .004, d[e].alpha -= .013, d[e].el.style.cssText = "left:" + d[e].x + "px;top:" + d[e].y + "px;opacity:" + d[e].alpha + ";transform:scale(" + d[e].scale + "," + d[e].scale + ") rotate(45deg);background:" + d[e].color + ";z-index:99999"); requestAnimationFrame(r) } function o() { var t = "function" == typeof e.onclick && e.onclick; e.onclick = function (e) { t && t(), i(e) } } function i(e) { var a = t.createElement("div"); a.className = "heart", d.push({ el: a, x: e.clientX - 5, y: e.clientY - 5, scale: 1, alpha: 1, color: s() }), t.body.appendChild(a) } function c(e) { var a = t.createElement("style"); a.type = "text/css"; try { a.appendChild(t.createTextNode(e)) } catch (t) { a.styleSheet.cssText = e } t.getElementsByTagName("head")[0].appendChild(a) } function s() { return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")" } var d = []; e.requestAnimationFrame = function () { return e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) { setTimeout(e, 1e3 / 60) } }(), n() }(window, document);
+//]]>
+         </script>
+
+       </body>
+
+
+
+
+</html>
